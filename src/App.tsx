@@ -15,7 +15,19 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [userVideos, setUserVideos] = useState<any[]>([]);
+  const [userVideos, setUserVideos] = useState<any[]>([
+    {
+      id: 1,
+      title: "MMA Highlights",
+      author: "MMA WORLD",
+      authorAvatar: "",
+      views: 1250,
+      likes: 89,
+      videoUrl: "https://vk.com/wall-234161523_1",
+      isLive: false,
+      thumbnail: "",
+    }
+  ]);
 
   const handleAddVideo = (video: any) => {
     setUserVideos([video, ...userVideos]);
