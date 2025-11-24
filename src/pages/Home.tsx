@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { VideoCard } from "@/components/VideoCard";
+import { VideoPlayerDialog } from "@/components/VideoPlayerDialog";
 import Icon from "@/components/ui/icon";
 
 interface HomeProps {
@@ -6,6 +8,14 @@ interface HomeProps {
 }
 
 export const Home = ({ videos = [] }: HomeProps) => {
+  const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
+  const handleVideoClick = (video: any) => {
+    setSelectedVideo(video);
+    setIsPlayerOpen(true);
+  };
+
   return (
     <div className="container py-8">
       <div className="mb-8">
@@ -21,7 +31,7 @@ export const Home = ({ videos = [] }: HomeProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
               className="animate-scale-in"
             >
-              <VideoCard {...video} />
+              <VideoCard {...video} onClick={() => handleVideoClick(video)} />
             </div>
           ))}
         </div>
@@ -36,6 +46,12 @@ export const Home = ({ videos = [] }: HomeProps) => {
           </p>
         </div>
       )}
+
+      <VideoPlayerDialog
+        open={isPlayerOpen}
+        onOpenChange={setIsPlayerOpen}
+        video={selectedVideo}
+      />
     </div>
   );
 };

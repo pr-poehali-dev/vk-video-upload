@@ -12,6 +12,7 @@ interface VideoCardProps {
   videoUrl: string;
   isLive?: boolean;
   thumbnail?: string;
+  onClick?: () => void;
 }
 
 export const VideoCard = ({
@@ -22,10 +23,14 @@ export const VideoCard = ({
   likes,
   videoUrl,
   isLive = false,
-  thumbnail
+  thumbnail,
+  onClick
 }: VideoCardProps) => {
   return (
-    <Card className="overflow-hidden bg-card hover:scale-105 transition-transform duration-300 cursor-pointer group">
+    <Card 
+      className="overflow-hidden bg-card hover:scale-105 transition-transform duration-300 cursor-pointer group"
+      onClick={onClick}
+    >
       <div className="relative aspect-video bg-muted">
         {thumbnail ? (
           <img src={thumbnail} alt={title} className="w-full h-full object-cover" />

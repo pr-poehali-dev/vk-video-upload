@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { VideoCard } from "@/components/VideoCard";
+import { VideoPlayerDialog } from "@/components/VideoPlayerDialog";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
 
@@ -50,6 +52,14 @@ const mockLiveVideos = [
 ];
 
 export const Live = () => {
+  const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
+  const handleVideoClick = (video: any) => {
+    setSelectedVideo(video);
+    setIsPlayerOpen(true);
+  };
+
   return (
     <div className="container py-8">
       <div className="mb-8">
@@ -73,7 +83,7 @@ export const Live = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
               className="animate-scale-in"
             >
-              <VideoCard {...video} />
+              <VideoCard {...video} onClick={() => handleVideoClick(video)} />
             </div>
           ))}
         </div>
@@ -88,6 +98,12 @@ export const Live = () => {
           </p>
         </div>
       )}
+
+      <VideoPlayerDialog
+        open={isPlayerOpen}
+        onOpenChange={setIsPlayerOpen}
+        video={selectedVideo}
+      />
     </div>
   );
 };
