@@ -20,7 +20,7 @@ export const Header = ({ onAddVideo }: HeaderProps) => {
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
               <Icon name="Video" size={20} className="text-white" />
             </div>
-            VK Video
+            MMA WORLD
           </Link>
           
           <nav className="hidden md:flex items-center gap-6">
