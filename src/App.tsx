@@ -18,12 +18,12 @@ const App = () => {
   const [userVideos, setUserVideos] = useState<any[]>([
     {
       id: 1,
-      title: "MMA Highlights",
+      title: "MMA Highlights - Лучшие моменты",
       author: "MMA WORLD",
       authorAvatar: "",
       views: 1250,
       likes: 89,
-      videoUrl: "https://vk.com/wall-234161523_1",
+      videoUrl: "https://vk.com/video-70580847_456242705",
       isLive: false,
       thumbnail: "",
     }

@@ -28,10 +28,16 @@ export const VideoPlayerDialog = ({ open, onOpenChange, video }: VideoPlayerDial
   if (!video) return null;
 
   const extractVKVideoId = (url: string) => {
-    const match = url.match(/wall(-?\d+)_(\d+)/);
+    let match = url.match(/video(-?\d+)_(\d+)/);
     if (match) {
-      return `${match[1]}_${match[2]}`;
+      return { oid: match[1], id: match[2] };
     }
+    
+    match = url.match(/wall(-?\d+)_(\d+)/);
+    if (match) {
+      return { oid: match[1], id: match[2] };
+    }
+    
     return null;
   };
 
@@ -44,7 +50,7 @@ export const VideoPlayerDialog = ({ open, onOpenChange, video }: VideoPlayerDial
           <div className="relative aspect-video bg-black">
             {videoId ? (
               <iframe
-                src={`https://vk.com/video_ext.php?oid=${videoId.split('_')[0]}&id=${videoId.split('_')[1]}&hd=2`}
+                src={`https://vk.com/video_ext.php?oid=${videoId.oid}&id=${videoId.id}&hd=2`}
                 width="100%"
                 height="100%"
                 allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
@@ -56,7 +62,10 @@ export const VideoPlayerDialog = ({ open, onOpenChange, video }: VideoPlayerDial
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <Icon name="AlertCircle" size={48} className="text-muted-foreground mb-4 mx-auto" />
-                  <p className="text-muted-foreground">Не удалось загрузить видео</p>
+                  <p className="text-muted-foreground">Неверный формат ссылки VK</p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Используйте ссылку формата: vk.com/video-123_456
+                  </p>
                 </div>
               </div>
             )}

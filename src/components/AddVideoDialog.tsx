@@ -71,7 +71,7 @@ export const AddVideoDialog = ({ open, onOpenChange, onAddVideo }: AddVideoDialo
             Добавить видео с VK
           </DialogTitle>
           <DialogDescription>
-            Вставьте ссылку на видео из ВКонтакте и заполните информацию
+            Вставьте ссылку на видео из ВКонтакте (формат: vk.com/video-123_456)
           </DialogDescription>
         </DialogHeader>
         
